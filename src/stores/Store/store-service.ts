@@ -12,4 +12,15 @@ export class Store {
       success: true
     });
   }
+
+  public async getAllStores(req: Request, res: Response) {
+    const { category_id } = req.query;
+    const stores = await database(process.env.STORE_TABLE).where({ category_id });
+
+    res.json({
+      status: HTTP_STATUS.OK,
+      data: stores,
+      success: true
+    });
+  }
 }
