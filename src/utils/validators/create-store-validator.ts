@@ -33,8 +33,6 @@ const createStoreValidator = [
     .isInt()
     .withMessage('Invalid Category Id')
     .custom(async (val) => {
-      console.log(val);
-
       const category = await database(process.env.CATEGORY_TABLE).where({ id: val });
       if (!category) {
         return Promise.reject(new Error('Category Not Found'));
